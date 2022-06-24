@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  vhp_xls_exports:
+    environment:
+      TZ: "Europe/Prague"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vhp_xls_exports_app
+    ports:
+      - "8009:8009"
+    image: vhp_xls_exports:1.0-alpine
+    restart: always
+    volumes:
+      - ./app/config.py:/opt/app/app/config.py
+    networks:
+      - vhp_xls_exports_network
+
+networks:
+  vhp_xls_exports_network:
